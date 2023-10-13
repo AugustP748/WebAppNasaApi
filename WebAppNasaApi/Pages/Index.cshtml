@@ -4,7 +4,24 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<h1>@Model.DataApod.title</h1>
+
+<figure class="apod-figure-img" style="display:inline;">
+    <img style="height:500px; width:auto;" src="@Model.DataApod.url" />
+</figure>
+
+<p>@Model.DataApod.explanation</p>
+
+@*<div class="card mb-3" style="max-width:800px;">
+    <img src="@Model.DataApod.url" class="card-img-top" alt="..." 
+    style="height:300px; width:auto;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.DataApod.title</h5>
+        <p class="card-text">@Model.DataApod.explanation</p>
+        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+    </div>
+</div>*@
+
+
+
