@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using WebAppNasaApi.Models;
+using WebAppNasaApi.Models.Mars;
 
 namespace WebAppNasaApi.Services
 {
@@ -30,5 +31,20 @@ namespace WebAppNasaApi.Services
 
             return response;
         }
+
+        public async Task<MarsRoverPhotosResponse> GetMarsRoverPhotosAsync(string roverName, int sol)
+        {
+            string apiUrl = $"https://api.nasa.gov/mars-photos/api/v1/rovers/{roverName}/photos?sol={sol}";
+
+            var uriBuilder = new UriBuilder(apiUrl);
+            var queryParameters = HttpUtility.ParseQueryString(uriBuilder.Query);
+            queryParameters["api_key"] = _apiKey;
+            uriBuilder.Query = queryParameters.ToString();
+
+            var response = await _httpClient.GetFromJsonAsync<MarsRoverPhotosResponse>(uriBuilder.ToString());
+
+            return response;
+        }
+
     }
 }

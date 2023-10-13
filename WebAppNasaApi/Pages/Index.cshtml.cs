@@ -17,7 +17,7 @@ namespace WebAppNasaApi.Pages
 
         public void OnGet()
         {
-            DataApod = index().Result;
+            //DataApod = index().Result;
         }
 
         public async Task<Apod> index()
