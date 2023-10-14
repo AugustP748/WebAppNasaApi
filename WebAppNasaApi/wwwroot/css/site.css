@@ -17,3 +17,9 @@ body {
   margin-bottom: 60px;
 }
 
+
+/* My settings */
+
+.card-apod {
+    border: 2px solid black;
+}
