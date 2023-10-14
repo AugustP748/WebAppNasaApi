@@ -10,6 +10,32 @@
     <p>@photo.camera.full_name</p>
 }*@
 
+<div class="container-mars-rover-inputs p-3">
+    <form>
+        <div class="row mb-3">
+            <div class="col">
+                <input type="date" class="form-control" id="startDate" name="startDate" min="2015-09-01" />
+            </div>
+            <div class="col">
+                <select id="Rover-select" class="form-select" aria-label="Default select example">
+                    <option selected>--- Rover Selection ---</option>
+                    <option value="1">Curioustity</option>
+                    <option value="2">Opportunity</option>
+                    <option value="3">Spirit</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <button type="submit"class="btn btn-success" style="width:500px;">Get results!</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@*
 <div class="row row-cols-sm-2 row-cols-md-3">
     @foreach (var photo in Model._photosResponse.Photos)
     {
@@ -23,4 +49,4 @@
             </div>
         </div>
     }
-</div>
+</div>*@
