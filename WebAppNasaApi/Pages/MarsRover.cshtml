@@ -11,42 +11,48 @@
 }*@
 
 <div class="container-mars-rover-inputs p-3">
-    <form>
+    <form method="post">
         <div class="row mb-3">
             <div class="col">
-                <input type="date" class="form-control" id="startDate" name="startDate" min="2015-09-01" />
+                <input type="date" class="form-control" id="date-earth" name="earth_date" min="2015-09-01" />
             </div>
             <div class="col">
-                <select id="Rover-select" class="form-select" aria-label="Default select example">
+                <select id="Rover-select" class="form-select" name="rover_name" aria-label="Default select example">
                     <option selected>--- Rover Selection ---</option>
-                    <option value="1">Curioustity</option>
-                    <option value="2">Opportunity</option>
-                    <option value="3">Spirit</option>
+                    <option value="curiosity">Curioustity</option>
+                    <option value="opportunity">Opportunity</option>
+                    <option value="spirit">Spirit</option>
                 </select>
             </div>
         </div>
 
         <div class="row">
             <div class="col text-center">
-                <button type="submit"class="btn btn-success" style="width:500px;">Get results!</button>
+                <button type="submit" class="btn btn-success" style="width:500px;">Get results!</button>
             </div>
         </div>
     </form>
 </div>
 
 
-@*
-<div class="row row-cols-sm-2 row-cols-md-3">
-    @foreach (var photo in Model._photosResponse.Photos)
-    {
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="@photo.img_src" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-subtitle">@photo.camera.full_name</p>
-                    <p class="card-text">@photo.earth_date.ToShortDateString()</p>
+@if(Model._photosResponse.Photos.Count() > 0)
+{
+    <div class="row row-cols-sm-2 row-cols-md-3">
+        @foreach (var photo in Model._photosResponse.Photos)
+        {
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="@photo.img_src" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-subtitle">@photo.camera.full_name</p>
+                        <p class="card-text">@photo.earth_date.ToShortDateString()</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-</div>*@
+        }
+    </div>
+} 
+else 
+{
+    <h1>Write some Date and select a rover from the select element and then, show me again!</h1>
+}

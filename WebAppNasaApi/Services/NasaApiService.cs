@@ -32,9 +32,9 @@ namespace WebAppNasaApi.Services
             return response;
         }
 
-        public async Task<MarsRoverPhotosResponse> GetMarsRoverPhotosAsync(string roverName, int sol)
+        public async Task<MarsRoverPhotosResponse> GetMarsRoverPhotosAsync(string roverName)
         {
-            string apiUrl = $"https://api.nasa.gov/mars-photos/api/v1/rovers/{roverName}/photos?sol={sol}";
+            string apiUrl = $"https://api.nasa.gov/mars-photos/api/v1/rovers/{roverName}/photos?sol=1000";
 
             var uriBuilder = new UriBuilder(apiUrl);
             var queryParameters = HttpUtility.ParseQueryString(uriBuilder.Query);

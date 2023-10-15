@@ -18,12 +18,20 @@ namespace WebAppNasaApi.Pages
 
         public void OnGet()
         {
-            _photosResponse = MarsRoverPhotosTask("curiosity", 1000).Result;
         }
 
-        public async Task<MarsRoverPhotosResponse> MarsRoverPhotosTask(string category,int sun)
+        public void OnPost()
         {
-            var marsRoverPhotos = await _nasaApiService.GetMarsRoverPhotosAsync(category,sun);
+            var selected_rover = Request.Form["rover_name"];
+            var selected_date = Request.Form["earth_date"];
+            //Console.WriteLine(selected_date);
+            //Console.ReadLine();
+            _photosResponse = MarsRoverPhotosTask(selected_rover).Result;
+        }
+
+        public async Task<MarsRoverPhotosResponse> MarsRoverPhotosTask(string category)
+        {
+            var marsRoverPhotos = await _nasaApiService.GetMarsRoverPhotosAsync(category);
 
             return marsRoverPhotos;
         }
