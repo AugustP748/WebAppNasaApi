@@ -1,5 +1,6 @@
 ﻿@page
 @model WebAppNasaApi.Pages.MarsRoverModel
+@using WebAppNasaApi.Pages.Shared
 @{
 }
 
@@ -14,11 +15,11 @@
     <form method="post">
         <div class="row mb-3">
             <div class="col">
-                <input type="date" class="form-control" id="date-earth" name="earth_date" min="2015-09-01" />
+                <input type="date" class="form-control" id="date-earth" name="earth_date" min="2015-09-01" required/>
             </div>
             <div class="col">
-                <select id="Rover-select" class="form-select" name="rover_name" aria-label="Default select example">
-                    <option selected>--- Rover Selection ---</option>
+                <select id="Rover-select" class="form-select" name="rover_name" aria-label="Default select example" required>
+                    <option selected>--- Seleccione un Rover ---</option>
                     <option value="curiosity">Curioustity</option>
                     <option value="opportunity">Opportunity</option>
                     <option value="spirit">Spirit</option>
@@ -27,29 +28,122 @@
         </div>
 
         <div class="row">
-            <div class="col text-center">
-                <button type="submit" class="btn btn-success" style="width:500px;">Get results!</button>
+            <div class="col">
+                @*<button type="submit" class="btn btn-success" style="width:500px;">Get results!</button>*@
+                <button type="submit" class="btn btn-success">Ver fotos</button>
+                <a class="btn btn-info" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Más información
+                </a>
             </div>
+            
         </div>
     </form>
+
+    <div class="collapse" id="collapseExample">
+        <div class="my-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Abreviatura</th>
+                        <th scope="col">Camara</th>
+                        <th scope="col">Curiosity</th>
+                        <th scope="col">Opportunity</th>
+                        <th scope="col">Spirit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>FHAZ</th>
+                        <td>Front Hazard Avoidance Camera</td>
+                        <td class="text-center">&#10003;</td>
+                        <td class="text-center">&#10003;</td>
+                        <td class="text-center">&#10003;</td>
+                    </tr>
+                    <tr>
+                        <th>RHAZ</th>
+                        <td>Rear Hazard Avoidance Camera</td>
+                        <td class="text-center">&#10003;</td>
+                        <td class="text-center">&#10003;</td>
+                        <td class="text-center">&#10003;</td>
+                    </tr>
+                    <tr>
+                        <th>MAST</th>
+                        <td>Mast Camera</td>
+                        <td class="text-center">&#10003;</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>CHEMCAM</th>
+                        <td>Chemistry and Camera Complex</td>
+                        <td class="text-center">&#10003;</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>MAHLI</th>
+                        <td>Mars Hand Lens Imager</td>
+                        <td class="text-center">&#10003;</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>MARDI</th>
+                        <td>Mars Descent Imager</td>
+                        <td class="text-center">&#10003;</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>NAVCAM</th>
+                        <td>Navigation Camera</td>
+                        <td class="text-center">&#10003;</td>
+                        <td class="text-center">&#10003;</td>
+                        <td class="text-center">&#10003;</td>
+                    </tr>
+                    <tr>
+                        <th>PANCAM</th>
+                        <td>Panoramic Camera</td>
+                        <td></td>
+                        <td class="text-center">&#10003;</td>
+                        <td class="text-center">&#10003;</td>
+                    </tr>
+                    <tr>
+                        <th>MINITES</th>
+                        <td>Miniature Thermal Emission Spectrometer (Mini-TES)</td>
+                        <td></td>
+                        <td class="text-center">&#10003;</td>
+                        <td class="text-center">&#10003;</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 
 
-@if(Model._photosResponse.Photos.Count() > 0)
+@if (ViewData["IsPost"] is true)
 {
-    <div class="row row-cols-sm-2 row-cols-md-3">
-        @foreach (var photo in Model._photosResponse.Photos)
-        {
-            <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <img src="@photo.img_src" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-subtitle">@photo.camera.full_name</p>
-                        <p class="card-text">@photo.earth_date.ToShortDateString()</p>
+    <div class="text-center">
+        <div class="row row-cols-md-3 my-3">
+            @foreach (var photo in Model._photosResponse.Photos)
+            {
+                <div class="col mb-3">
+                    <div class="card">
+                        <img src="@photo.img_src" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-subtitle"> Camara: @photo.camera.full_name</p>
+                            <p class="card-text"><small class="text-body-secondary">
+                                    Fecha: @photo.earth_date.ToShortDateString()
+                                </small>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
 } 
 else 

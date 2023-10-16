@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Globalization;
 using WebAppNasaApi.Models.Mars;
 using WebAppNasaApi.Services;
 
@@ -18,20 +19,24 @@ namespace WebAppNasaApi.Pages
 
         public void OnGet()
         {
+            _photosResponse = null;
         }
 
         public void OnPost()
         {
-            var selected_rover = Request.Form["rover_name"];
-            var selected_date = Request.Form["earth_date"];
+            string selected_rover = Request.Form["rover_name"];
+            DateTime selected_date = DateTime.Parse(Request.Form["earth_date"]);
             //Console.WriteLine(selected_date);
             //Console.ReadLine();
-            _photosResponse = MarsRoverPhotosTask(selected_rover).Result;
+            _photosResponse = MarsRoverPhotosTask(selected_rover, selected_date).Result;
+            ViewData["IsPost"] = true;
         }
 
-        public async Task<MarsRoverPhotosResponse> MarsRoverPhotosTask(string category)
+        public async Task<MarsRoverPhotosResponse> MarsRoverPhotosTask(string category,DateTime date)
         {
-            var marsRoverPhotos = await _nasaApiService.GetMarsRoverPhotosAsync(category);
+            //Console.WriteLine(date.ToString("yyyy-MM-dd"));
+            //Console.ReadLine();
+            var marsRoverPhotos = await _nasaApiService.GetMarsRoverPhotosAsync(category,date);
 
             return marsRoverPhotos;
         }
