@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using WebAppNasaApi.Models;
+using WebAppNasaApi.Models.Epic;
 using WebAppNasaApi.Models.Mars;
 
 namespace WebAppNasaApi.Services
@@ -45,6 +46,22 @@ namespace WebAppNasaApi.Services
 
             return response;
         }
+
+        public async Task<List<EpicImage>> GetEpicImagesAsync(DateTime date)
+        {
+            string apiUrl = $"https://api.nasa.gov/EPIC/api/natural/date/{date.ToString("yyyy-MM-dd")}";
+
+            var uriBuilder = new UriBuilder(apiUrl);
+            var queryParameters = HttpUtility.ParseQueryString(uriBuilder.Query);
+            queryParameters["api_key"] = _apiKey;
+            uriBuilder.Query = queryParameters.ToString();
+
+            var response = await _httpClient.GetFromJsonAsync<List<EpicImage>>(uriBuilder.ToString());
+
+            return response;
+        }
+
+
 
     }
 }

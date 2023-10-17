@@ -1,17 +1,8 @@
 ﻿@page
 @model WebAppNasaApi.Pages.MarsRoverModel
 @using WebAppNasaApi.Pages.Shared
-@{
-}
 
-@*@foreach (var photo in Model._photosResponse.Photos)
-{
-    <img src="@photo.img_src"/>
-    <p>@photo.earth_date.ToShortDateString()</p>
-    <p>@photo.camera.full_name</p>
-}*@
-
-<div class="container-mars-rover-inputs p-3">
+<div class="container-inputs p-3">
     <form method="post">
         <div class="row mb-3">
             <div class="col">

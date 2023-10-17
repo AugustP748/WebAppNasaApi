@@ -1,0 +1,48 @@
+﻿@page
+@model WebAppNasaApi.Pages.EpicModel
+
+<div class="text-center">
+    <div class="row">
+        <div class="col">
+            <div class="container-inputs p-3" style="width:18rem;">
+                <form method="post">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input type="date" class="form-control" id="date" name="date-epic"
+                                   min="2015-09-01" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-success">Ver imagen</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col">
+            @if (ViewData["date-epic"] is true)
+            {
+                @foreach(var picture in Model.epicImages)
+                {
+                    <figure>
+                        <img src="@picture.image"/>
+                        <figcaption>@picture.caption</figcaption>
+                    </figure>
+                    <p><small class="text-body-secondary">Fecha: @picture.date</small></p>
+                    
+                }
+            }
+            else
+            {
+                <h1>Select a date and then, see here the earth where you live now.</h1>
+            }
+
+
+
+        </div>
+    </div>
+    
+</div>
