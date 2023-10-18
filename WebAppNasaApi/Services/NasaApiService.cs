@@ -1,7 +1,9 @@
-﻿using System.Web;
+﻿using System.Net;
+using System.Web;
 using WebAppNasaApi.Models;
 using WebAppNasaApi.Models.Epic;
 using WebAppNasaApi.Models.Mars;
+
 
 namespace WebAppNasaApi.Services
 {
@@ -47,9 +49,9 @@ namespace WebAppNasaApi.Services
             return response;
         }
 
-        public async Task<List<EpicImage>> GetEpicImagesAsync(DateTime date)
+        public async Task<List<EpicImage>> GetEpicImagesAsync(DateTime date_epic)
         {
-            string apiUrl = $"https://api.nasa.gov/EPIC/api/natural/date/{date.ToString("yyyy-MM-dd")}";
+            string apiUrl = $"https://api.nasa.gov/EPIC/api/natural/date/{date_epic:yyyy-MM-dd}";
 
             var uriBuilder = new UriBuilder(apiUrl);
             var queryParameters = HttpUtility.ParseQueryString(uriBuilder.Query);
@@ -59,6 +61,18 @@ namespace WebAppNasaApi.Services
             var response = await _httpClient.GetFromJsonAsync<List<EpicImage>>(uriBuilder.ToString());
 
             return response;
+        }
+
+        public async Task<string> GetImageURLEPIC(DateTime date_epic,string name_image)
+        {
+            string apiUrl = $"https://epic.gsfc.nasa.gov/archive/natural/2015/10/31/png/{name_image}.png";
+
+            var uriBuilder = new UriBuilder(apiUrl);
+            var queryParameters = HttpUtility.ParseQueryString(uriBuilder.Query);
+            queryParameters["api_key"] = _apiKey;
+            uriBuilder.Query = queryParameters.ToString();
+
+            return uriBuilder.ToString();
         }
 
 
