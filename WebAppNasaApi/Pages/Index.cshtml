@@ -5,8 +5,8 @@
 @if(Model.DataApod != null)
 {
     <div class="card card-apod mb-3">
-        <a href="@Model.DataApod.hdurl">
-            <img src="@Model.DataApod.url" class="card-img-top" alt="...">
+        <a href="@Model.DataApod.hdurl" target="_blank">
+            <img src="@Model.DataApod.url" class="card-img-top" alt="..." >
         </a>
         <div class="card-body">
             <h1 class="card-title">@Model.DataApod.title</h1>
@@ -18,7 +18,8 @@
 }
 else
 {
-    <h1>There aren't anything to show here, back soon!</h1>
+    @*<h1>There aren't anything to show here, back soon!</h1>*@
+    <h1>There aren't anything to show here</h1>
 }
 
 

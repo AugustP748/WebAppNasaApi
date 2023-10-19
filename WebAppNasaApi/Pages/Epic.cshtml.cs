@@ -10,7 +10,7 @@ namespace WebAppNasaApi.Pages
     {
         private readonly NasaApiService _nasaApiService;
         public List<EpicImage> epicImages;
-        public string ImageURL;
+        public Task<byte[]> ImageBytes;
 
         public EpicModel(NasaApiService nasaapiservice)
         {
@@ -22,15 +22,15 @@ namespace WebAppNasaApi.Pages
             epicImages = null;
         }
 
-        public async void OnPost()
+        public void OnPost()
         {
             DateTime selected_date = DateTime.Parse(Request.Form["date-epic"]);
             //Console.WriteLine(selected_date);
             //Console.ReadLine();
             epicImages = EpicImagesTask(selected_date).Result;
-            ImageURL = await _nasaApiService.GetImageURLEPIC(selected_date, epicImages[0].image);
-            Console.WriteLine(ImageURL);
-            Console.ReadLine();
+            //ImageBytes = GetImageByte(selected_date, epicImages[0].image);
+            //Console.WriteLine(ImageBytes);
+            //Console.ReadLine();
             ViewData["IsPost"] = true;
         }
 
@@ -41,6 +41,12 @@ namespace WebAppNasaApi.Pages
             var epicresult = await _nasaApiService.GetEpicImagesAsync(date_epic);
             
             return epicresult;
+        }
+
+        public async Task<byte[]> GetImageByte(DateTime selected_data,string name_image)
+        {
+            var result = await _nasaApiService.GetImageURLEPIC(selected_data, name_image);
+            return result;
         }
     }
 }

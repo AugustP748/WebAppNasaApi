@@ -2,6 +2,7 @@
 using System.Web;
 using WebAppNasaApi.Models;
 using WebAppNasaApi.Models.Epic;
+using WebAppNasaApi.Models.ImagesLibrary;
 using WebAppNasaApi.Models.Mars;
 
 
@@ -18,6 +19,7 @@ namespace WebAppNasaApi.Services
             _apiKey = configuration["NasaApiKey"]; // Configura tu clave de API en la configuración de la aplicación.
         }
 
+        // APOD API
         public async Task<Apod> GetNasaDataAsync()
         {
             // Construye la URL de la API de la NASA según tus necesidades.
@@ -35,6 +37,7 @@ namespace WebAppNasaApi.Services
             return response;
         }
 
+        // MARS ROVER PHOTOS
         public async Task<MarsRoverPhotosResponse> GetMarsRoverPhotosAsync(string roverName,DateTime earth_date)
         {
             string apiUrl = $"https://api.nasa.gov/mars-photos/api/v1/rovers/{roverName}/photos?earth_date={earth_date.ToString("yyyy-MM-dd")}";
@@ -49,6 +52,7 @@ namespace WebAppNasaApi.Services
             return response;
         }
 
+        // EPIC API 
         public async Task<List<EpicImage>> GetEpicImagesAsync(DateTime date_epic)
         {
             string apiUrl = $"https://api.nasa.gov/EPIC/api/natural/date/{date_epic:yyyy-MM-dd}";
@@ -63,18 +67,41 @@ namespace WebAppNasaApi.Services
             return response;
         }
 
-        public async Task<string> GetImageURLEPIC(DateTime date_epic,string name_image)
+        // GET IMAGE EPIC
+        public async Task<byte[]> GetImageURLEPIC(DateTime date_epic,string name_image)
         {
-            string apiUrl = $"https://epic.gsfc.nasa.gov/archive/natural/2015/10/31/png/{name_image}.png";
+            //string apiUrl = $"https://epic.gsfc.nasa.gov/archive/natural/2015/10/31/png/{name_image}.png";
+            string apiUrl = $"https://api.nasa.gov/EPIC/archive/natural/2019/05/30/png/epic_1b_20190530011359.png";
 
             var uriBuilder = new UriBuilder(apiUrl);
             var queryParameters = HttpUtility.ParseQueryString(uriBuilder.Query);
             queryParameters["api_key"] = _apiKey;
             uriBuilder.Query = queryParameters.ToString();
 
-            return uriBuilder.ToString();
+            var response = await _httpClient.GetAsync(uriBuilder.ToString());
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new Exception($"Failed to download image: {response.StatusCode}");
+            }
+
+            return await response.Content.ReadAsByteArrayAsync();
         }
 
+        // IMAGES AND VIDEOS
+        public async Task<NasaImagesAndVideosResponse> GetNasaImagesAndVideosAsync(string query)
+        {
+            string apiUrl = $"https://images-api.nasa.gov/search?q={query}&media_type=image";
+
+            var uriBuilder = new UriBuilder(apiUrl);
+            var queryParameters = HttpUtility.ParseQueryString(uriBuilder.Query);
+            
+            uriBuilder.Query = queryParameters.ToString();
+
+            var response = await _httpClient.GetFromJsonAsync<NasaImagesAndVideosResponse>(uriBuilder.ToString());
+
+            return response;
+        }
 
 
     }

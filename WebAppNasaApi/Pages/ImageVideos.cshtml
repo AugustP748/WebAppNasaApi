@@ -1,0 +1,35 @@
+﻿@page
+@model WebAppNasaApi.Pages.ImageVideosModel
+@{
+}
+
+<div class="text-center">
+    <h1>Images and Videos</h1>
+</div>
+
+<div class="gallery">
+
+    @if (Model.image_video_response.collection.items.Any())
+    {
+        foreach (var item in Model.image_video_response.collection.items)
+        {
+            @*foreach(var dat in item.data)
+            {
+                <p>@dat.title</p>
+            }*@
+            
+
+            <div class="gallery-item">
+                @foreach(var link in item.links)
+                {
+                    <a href="@link.href" target="_blank">
+                        <img src="@link.href" />
+                        <div class="tooltip">Title 1</div>
+                    </a>
+                }
+            </div>
+
+        }
+    }
+</div>
+
