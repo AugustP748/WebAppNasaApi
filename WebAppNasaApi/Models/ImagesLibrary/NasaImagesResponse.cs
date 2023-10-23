@@ -1,6 +1,6 @@
 ﻿namespace WebAppNasaApi.Models.ImagesLibrary
 {
-    public class NasaImagesAndVideosResponse
+    public class NasaImagesResponse
     {
         public NasaCollection collection { get; set; }
     }

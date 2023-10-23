@@ -89,7 +89,7 @@ namespace WebAppNasaApi.Services
         }
 
         // IMAGES AND VIDEOS
-        public async Task<NasaImagesAndVideosResponse> GetNasaImagesAndVideosAsync(string query)
+        public async Task<NasaImagesResponse> GetNasaImagesAsync(string query)
         {
             string apiUrl = $"https://images-api.nasa.gov/search?q={query}&media_type=image";
 
@@ -98,7 +98,7 @@ namespace WebAppNasaApi.Services
             
             uriBuilder.Query = queryParameters.ToString();
 
-            var response = await _httpClient.GetFromJsonAsync<NasaImagesAndVideosResponse>(uriBuilder.ToString());
+            var response = await _httpClient.GetFromJsonAsync<NasaImagesResponse>(uriBuilder.ToString());
 
             return response;
         }
