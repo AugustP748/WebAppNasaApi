@@ -6,9 +6,9 @@
 <div class="text-center">
     <h1>Imagenes</h1>
     <form method="post">
-       <input type="text" name="input-search-image" placeholder="Buscar..." 
-       style="width:500px; padding:0;margin:0"/>
-       <button type="submit" class="btn btn-primary">Buscar</button>
+       <input type="text" class="form-control mx-auto" name="input-search-image" placeholder="Buscar..." 
+       style="width:500px; padding:0; display:inline;"/>
+        <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
     @if (ViewData["is_post"] is true)
     {
@@ -28,7 +28,9 @@
                 @foreach(var link in item.links)
                 {
                     <div class="card">
-                        <img src="@link.href" class="card-img-top" alt="...">
+                        <a href="@link.href" target="_blank">
+                            <img src="@link.href" class="card-img-top" alt="...">
+                        </a>
                         <div class="card-body">
                             <p class="card-text">@item.data.ElementAt(index).title</p>
                         </div>
