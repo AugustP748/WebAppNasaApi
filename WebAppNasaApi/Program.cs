@@ -1,9 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using WebAppNasaApi.Context;
 using WebAppNasaApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 
 builder.Services.AddHttpClient<NasaApiService>();
 builder.Services.AddTransient<NasaApiService>();
