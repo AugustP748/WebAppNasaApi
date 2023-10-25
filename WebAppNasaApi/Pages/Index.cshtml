@@ -5,14 +5,28 @@
 @if(Model.DataApod != null)
 {
     <div class="card card-apod mb-3">
-        <a href="@Model.DataApod.hdurl" target="_blank">
-            <img src="@Model.DataApod.url" class="card-img-top" alt="..." >
-        </a>
+        @if (Model.DataApod.media_type == "video")
+        {
+         <div class="text-center" style="background:black;">
+            <iframe width="560" height="315" 
+                src="@Model.DataApod.url" title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen></iframe>
+         </div>
+        }
+        else
+        {
+            <a href="@Model.DataApod.hdurl" target="_blank">
+                <img src="@Model.DataApod.url" class="card-img-top" alt="..." >
+            </a>
+        }
+
         <div class="card-body">
             <h1 class="card-title">@Model.DataApod.title</h1>
             <p class="card-text">@Model.DataApod.explanation</p>
-            <p class="card-text"><small class="text-body-secondary">
-                Fecha: @Model.DataApod.date.ToString("dd/MM/yyyy") | @Model.DataApod.copyright &copy;</small></p>
+            <a href="#" class="btn btn-warning">Guardar Imagen del día</a>
+                <p class="card-text"><small class="text-body-secondary">
+                    Fecha: @Model.DataApod.date.ToString("dd/MM/yyyy") | @Model.DataApod.copyright &copy;</small></p>
         </div>
     </div>
 }

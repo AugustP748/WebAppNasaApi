@@ -8,5 +8,6 @@
         public string hdurl { get; set; }
         public string copyright { get; set; }
         public DateTime date { get; set; }
+        public string media_type { get; set; }
     }
 }
