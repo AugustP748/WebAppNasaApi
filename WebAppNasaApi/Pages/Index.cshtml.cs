@@ -21,7 +21,17 @@ namespace WebAppNasaApi.Pages
 
         public void OnGet()
         {
-            //DataApod = index().Result;
+            DataApod = index().Result;
+        }
+
+        public void SaveApodImage(Apod apodObject)
+        {
+            using (var context = _context)
+            {
+                context.ApodDB.Add(apodObject);
+                context.SaveChanges();
+
+            }
         }
 
         public async Task<Apod> index()
