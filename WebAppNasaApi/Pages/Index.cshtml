@@ -1,10 +1,10 @@
 ﻿@page
 @model IndexModel
 
-
+<div class="justify-content-center">
 @if(Model.DataApod != null)
 {
-    <div class="card card-apod mb-3">
+    <div class="card card-apod mb-3" style="width: 75%; height:75%; margin:0 auto;"> 
         @if (Model.DataApod.media_type == "video")
         {
          <div class="text-center" style="background:black;">
@@ -17,15 +17,19 @@
         else
         {
             <a href="@Model.DataApod.hdurl" target="_blank">
-                <img src="@Model.DataApod.url" class="card-img-top" alt="..." >
+                <img src="@Model.DataApod.url" class="card-img-top img-fluid" alt="...">
             </a>
         }
 
         <div class="card-body">
             <h1 class="card-title">@Model.DataApod.title</h1>
             <p class="card-text">@Model.DataApod.explanation</p>
-            <a href="#" class="btn btn-warning">Guardar Imagen del día</a>
-                <p class="card-text"><small class="text-body-secondary">
+            <form method="post" style="display:inline">
+                <button type="submit" class="btn btn-warning">Guardar Imagen del día</button>
+            </form>
+            @*<button type="button" class="btn btn-warning" onclick="SaveApodImage">Guardar Imagen del día</button>*@
+                <p class="card-text" style="display:inline-block;">
+                    <small class="text-body-secondary">
                     Fecha: @Model.DataApod.date.ToString("dd/MM/yyyy") | @Model.DataApod.copyright &copy;</small></p>
         </div>
     </div>
@@ -34,7 +38,8 @@ else
 {
     @*<h1>There aren't anything to show here, back soon!</h1>*@
     <h1>There aren't anything to show here</h1>
-}
 
+}
+</div>
 
 

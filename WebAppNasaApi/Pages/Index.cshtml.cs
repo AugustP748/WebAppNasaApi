@@ -11,7 +11,7 @@ namespace WebAppNasaApi.Pages
     {
         private readonly ApplicationDbContext _context;
         private readonly NasaApiService _nasaApiService;
-        public Apod DataApod;
+        public Apod DataApod { get; set; }
 
         public IndexModel(NasaApiService nasaApiService, ApplicationDbContext context)
         {
@@ -22,15 +22,21 @@ namespace WebAppNasaApi.Pages
         public void OnGet()
         {
             DataApod = index().Result;
+
         }
 
-        public void SaveApodImage(Apod apodObject)
+        public void OnPost()
         {
+            DataApod = index().Result;
+
+
+            //Console.WriteLine(DataApod.title);
+            //Console.ReadLine();
+
             using (var context = _context)
             {
-                context.ApodDB.Add(apodObject);
+                context.ApodDB.Add(DataApod);
                 context.SaveChanges();
-
             }
         }
 
