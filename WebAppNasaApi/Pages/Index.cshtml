@@ -2,44 +2,51 @@
 @model IndexModel
 
 <div class="justify-content-center">
-@if(Model.DataApod != null)
-{
-    <div class="card card-apod mb-3" style="width: 75%; height:75%; margin:0 auto;"> 
-        @if (Model.DataApod.media_type == "video")
-        {
-         <div class="text-center" style="background:black;">
-            <iframe width="560" height="315" 
-                src="@Model.DataApod.url" title="YouTube video player" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen></iframe>
-         </div>
-        }
-        else
-        {
-            <a href="@Model.DataApod.hdurl" target="_blank">
-                <img src="@Model.DataApod.url" class="card-img-top img-fluid" alt="...">
-            </a>
-        }
+    @if(Model.DataApod != null)
+    {
+        <div class="card card-apod mb-3" style="width: 75%; height:75%; margin:0 auto;"> 
+            @if (Model.DataApod.media_type == "video")
+            {
+             <div class="text-center" style="background:black;">
+                <iframe width="560" height="315" 
+                    src="@Model.DataApod.url" title="YouTube video player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen></iframe>
+             </div>
+            }
+            else
+            {
+                <a href="@Model.DataApod.hdurl" target="_blank">
+                    <img src="@Model.DataApod.url" class="card-img-top img-fluid" alt="...">
+                </a>
+            }
 
-        <div class="card-body">
-            <h1 class="card-title">@Model.DataApod.title</h1>
-            <p class="card-text">@Model.DataApod.explanation</p>
-            <form method="post" style="display:inline">
-                <button type="submit" class="btn btn-warning">Guardar Imagen del día</button>
-            </form>
-            @*<button type="button" class="btn btn-warning" onclick="SaveApodImage">Guardar Imagen del día</button>*@
-                <p class="card-text" style="display:inline-block;">
-                    <small class="text-body-secondary">
-                    Fecha: @Model.DataApod.date.ToString("dd/MM/yyyy") | @Model.DataApod.copyright &copy;</small></p>
+            <div class="card-body">
+                <h1 class="card-title">@Model.DataApod.title</h1>
+                <p class="card-text">@Model.DataApod.explanation</p>
+                <form method="post" style="display:inline">
+                    @if (Model._saved is true)
+                    {
+                        <button type="submit" class="btn btn-danger">Quitar de guardado</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-warning">Guardar Imagen del día</button>
+                    }
+                </form>
+                @*<button type="button" class="btn btn-warning" onclick="SaveApodImage">Guardar Imagen del día</button>*@
+                    <p class="card-text" style="display:inline-block;">
+                        <small class="text-body-secondary">
+                        Fecha: @Model.DataApod.date.ToString("dd/MM/yyyy") | Autor: @Model.DataApod.copyright &copy;</small></p>
+            </div>
         </div>
-    </div>
-}
-else
-{
-    @*<h1>There aren't anything to show here, back soon!</h1>*@
-    <h1>There aren't anything to show here</h1>
+    }
+    else
+    {
+        @*<h1>There aren't anything to show here, back soon!</h1>*@
+        <h1>There aren't anything to show here</h1>
 
-}
+    }
 </div>
 
 
