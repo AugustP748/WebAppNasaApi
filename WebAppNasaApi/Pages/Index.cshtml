@@ -4,7 +4,7 @@
 <div class="justify-content-center">
     @if(Model.DataApod != null)
     {
-        <div class="card card-apod mb-3" style="width: 75%; height:75%; margin:0 auto;"> 
+        <div class="card card-apod mb-3 apod-card"> 
             @if (Model.DataApod.media_type == "video")
             {
              <div class="text-center" style="background:black;">
@@ -43,9 +43,7 @@
     }
     else
     {
-        @*<h1>There aren't anything to show here, back soon!</h1>*@
         <h1>There aren't anything to show here</h1>
-
     }
 </div>
 

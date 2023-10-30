@@ -23,7 +23,7 @@ namespace WebAppNasaApi.Pages
         public void OnGet()
         {
             DataApod = index().Result;
-            _saved=verify(DataApod);
+            _saved = verify(DataApod);
         }
 
         public void OnPost()
