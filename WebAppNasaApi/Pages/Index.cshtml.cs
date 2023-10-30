@@ -12,7 +12,7 @@ namespace WebAppNasaApi.Pages
         private readonly ApplicationDbContext _context;
         private readonly NasaApiService _nasaApiService;
         public Apod DataApod { get; set; }
-        public bool _saved = false;
+        public bool _saved { get; set; }
 
         public IndexModel(NasaApiService nasaApiService, ApplicationDbContext context)
         {
@@ -23,14 +23,14 @@ namespace WebAppNasaApi.Pages
         public void OnGet()
         {
             DataApod = index().Result;
-            verify(DataApod);
+            _saved=verify(DataApod);
         }
 
         public void OnPost()
         {
             
             DataApod = index().Result;
-            if (_saved is true)
+            if (verify(DataApod))
             {
                 Apod datadelete = _context.ApodDB.Where(x => x.title == DataApod.title).First();
                 _context.ApodDB.Remove(datadelete);
@@ -40,21 +40,19 @@ namespace WebAppNasaApi.Pages
                 _context.ApodDB.Add(DataApod);
             }
             _context.SaveChanges();
-            verify(DataApod);
+            _saved = verify(DataApod);
         }
 
-        public void verify(Apod ap)
+        public bool verify(Apod ap)
         {
             if (_context.ApodDB.Any(c => c.title == ap.title))
             {
-                _saved = true;
+                return true;
             }
             else
             {
-                _saved = false;
+                return false;
             }
-            //Console.WriteLine(_saved);
-            //Console.ReadLine();
         }
 
         public async Task<Apod> index()
