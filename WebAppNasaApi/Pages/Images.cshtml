@@ -3,7 +3,7 @@
 @{
 }
 
-<div class="text-center">
+<div class="text-center mb-3">
     <h1>Imagenes</h1>
     <form method="post">
        <input type="text" class="form-control mx-auto" name="input-search-image" placeholder="Buscar..." 
@@ -17,33 +17,27 @@
     }
 </div>
 
-<div class="gallery">
+<div class="imagen-grid">
 
     @if (Model.image_response.collection.items.Any())
     {
         foreach (var item in Model.image_response.collection.items)
         {
             int index = 0;
-            <div class="gallery-item">
-                @foreach(var link in item.links)
-                {
-                    <div class="card">
-                        <a href="@link.href" target="_blank">
-                            <img src="@link.href" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <p class="card-text">@item.data.ElementAt(index).title</p>
-                        </div>
-                    </div>
-
-                    @*<a href="@link.href" target="_blank">
-                        <img src="@link.href" />
+            
+            @foreach(var link in item.links)
+            {
+                <div class="imagen-item">
+                    <a href="@link.href" target="_blank">
+                    
+                        <img src="@link.href" class="card-img-top" alt="...">
+                        <div class="imagen-titulo">@item.data.ElementAt(index).title</div>
+                    
                     </a>
-                        <a>@item.data.ElementAt(index).title</a>*@
-                    index++;
-                }
-            </div>
+                </div>
 
+                index++;
+            }
         }
     }
 </div>
