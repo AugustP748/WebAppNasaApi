@@ -1,6 +1,7 @@
 ﻿@page
 @model WebAppNasaApi.Pages.ImageVideosModel
 @{
+    
 }
 
 <div class="text-center mb-3">
@@ -29,11 +30,12 @@
             {
                 <div class="imagen-item">
                     <a href="@link.href" target="_blank">
-                    
                         <img src="@link.href" class="card-img-top" alt="...">
-                        <div class="imagen-titulo">@item.data.ElementAt(index).title</div>
-                    
                     </a>
+                    @*<button class="favorite-button" onclick="toggleFavorite">&#9733;</button>*@
+                    <button class="favorite-button" onclick="greetButton">&#9733;</button>
+                    <div class="imagen-titulo">@item.data.ElementAt(index).title</div>
+                    
                 </div>
 
                 index++;

@@ -94,5 +94,19 @@ body {
     z-index: 1;
 }
 
+.favorite-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: transparent;
+    border: 2px; /* Añade un borde negro */
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+    transition: color 0.3s;
+}
 
+.favorite-button:hover {
+    color: yellow; /* Cambia el color al pasar el mouse para indicar que se puede marcar como favorita */
+}
 
