@@ -81,6 +81,17 @@ body {
     width: 100%;
     padding: 5px;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.7s;
+}
+
+.imagen-titulo:hover {
+    overflow: visible;
+    white-space: normal;
+    text-overflow: clip;
+    z-index: 1;
 }
 
 
