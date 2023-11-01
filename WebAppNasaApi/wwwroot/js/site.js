@@ -2,3 +2,6 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+function toggleFavorite(button) {
+    button.style.color = button.style.color === 'yellow' ? '#fff' : 'yellow';
+}

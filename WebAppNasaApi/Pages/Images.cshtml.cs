@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebAppNasaApi.Models.ImagesLibrary;
@@ -27,6 +28,13 @@ namespace WebAppNasaApi.Pages
             image_response = null;
             image_response = ImagesVideosTask(input_search).Result;
             ViewData["is_post"] = true;
+        }
+
+        public void saludar()
+        {
+            Console.WriteLine("Hello world, that is working Ok");
+            Console.ReadLine();
+            
         }
 
 
