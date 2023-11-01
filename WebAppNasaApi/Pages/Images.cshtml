@@ -9,7 +9,8 @@
     <form method="post">
        <input type="text" class="form-control mx-auto" name="input-search-image" placeholder="Buscar..." 
        style="width:500px; padding:0; display:inline;"/>
-        <button type="submit" class="btn btn-primary">Buscar</button>
+        <button type="submit" name="submitButton" class="btn btn-primary"
+        value="searchbutton">Buscar</button>
     </form>
     @if (ViewData["is_post"] is true)
     {
@@ -33,7 +34,10 @@
                         <img src="@link.href" class="card-img-top" alt="...">
                     </a>
                     @*<button class="favorite-button" onclick="toggleFavorite">&#9733;</button>*@
-                    <button class="favorite-button" onclick="greetButton">&#9733;</button>
+                    <form method="post">
+                        <button type="submit" name="submitButton" class="favorite-button" 
+                        value="favoriteButton">&#9733;</button>
+                    </form>
                     <div class="imagen-titulo">@item.data.ElementAt(index).title</div>
                     
                 </div>
