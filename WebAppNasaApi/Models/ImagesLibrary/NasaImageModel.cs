@@ -12,6 +12,7 @@ namespace WebAppNasaApi.Models.ImagesLibrary
         public string description { get; set; }
         public string href { get; set; }
         public string? media_type { get; set; }
+        public string nasa_id { get; set; }
 
 
     }

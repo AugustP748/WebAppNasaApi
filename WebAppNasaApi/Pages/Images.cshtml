@@ -1,8 +1,5 @@
 ﻿@page
 @model WebAppNasaApi.Pages.ImageVideosModel
-@{
-    
-}
 
 <div class="text-center mb-3">
     <h1>Imagenes</h1>
@@ -20,23 +17,15 @@
 </div>
 
 <div class="imagen-grid">
-
     @if (Model.image_list.Any())
     {
         foreach (var item in Model.image_list)
         {
-
                 <div class="imagen-item">
                     <a href="@item.href" target="_blank">
                         <img src="@item.href" class="card-img-top" alt="...">
                     </a>
-                        @*<button class="favorite-button" onclick="toggleFavorite">&#9733;</button>*@
-                    <form method="post">
-                        <button type="submit" name="submitButton" class="favorite-button" 
-                        value="favoriteButton">&#9733;</button>
-                    </form>
                     <div class="imagen-titulo">@item.title</div>
-                    
                 </div>
         }
     }
