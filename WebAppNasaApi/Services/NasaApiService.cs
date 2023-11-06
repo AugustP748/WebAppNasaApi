@@ -88,7 +88,7 @@ namespace WebAppNasaApi.Services
             return await response.Content.ReadAsByteArrayAsync();
         }
 
-        // IMAGES AND VIDEOS
+        // IMAGES
         public async Task<NasaImagesResponse> GetNasaImagesAsync(string query)
         {
             string apiUrl = $"https://images-api.nasa.gov/search?q={query}&media_type=image";
@@ -103,6 +103,19 @@ namespace WebAppNasaApi.Services
             return response;
         }
 
+        public async Task<NasaImagesResponse> GetTheNasaImageAsync(string nasa_id)
+        {
+            string apiUrl = $"https://images-api.nasa.gov/search?nasa_id={nasa_id}";
+
+            var uriBuilder = new UriBuilder(apiUrl);
+            var queryParameters = HttpUtility.ParseQueryString(uriBuilder.Query);
+
+            uriBuilder.Query = queryParameters.ToString();
+
+            var response = await _httpClient.GetFromJsonAsync<NasaImagesResponse>(uriBuilder.ToString());
+
+            return response;
+        }
 
     }
 }

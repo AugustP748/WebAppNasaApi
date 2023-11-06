@@ -1,4 +1,5 @@
 ﻿@page
+@using Newtonsoft.Json;
 @model WebAppNasaApi.Pages.ImageVideosModel
 
 <div class="text-center mb-3">
@@ -21,12 +22,13 @@
     {
         foreach (var item in Model.image_list)
         {
-                <div class="imagen-item">
-                    <a href="@item.href" target="_blank">
-                        <img src="@item.href" class="card-img-top" alt="...">
-                    </a>
-                    <div class="imagen-titulo">@item.title</div>
-                </div>
+            @*var json = JsonConvert.SerializeObject(item);*@
+            <div class="imagen-item">
+                <a asp-page="/ImageDetails" asp-route-nasa_id=@item.nasa_id>
+                    <img src="@item.href" class="card-img-top" alt="...">
+                </a>
+                <div class="imagen-titulo">@item.title</div>
+            </div>
         }
     }
 </div>

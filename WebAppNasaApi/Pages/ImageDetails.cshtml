@@ -1,0 +1,15 @@
+﻿@page
+@model WebAppNasaApi.Pages.ImageDetailsModel
+
+
+@foreach(var item in Model.nasaimagemodel)
+{
+    <h1>@item.title</h1>
+    <figure>
+        <a href="@item.href" target="_blank">
+            <img src="@item.href" >
+        </a>
+    </figure>
+
+    <p>@item.description</p>
+}

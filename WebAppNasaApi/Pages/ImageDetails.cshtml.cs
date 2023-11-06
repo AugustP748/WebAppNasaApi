@@ -1,34 +1,35 @@
+using Humanizer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
+using System.Dynamic;
 using WebAppNasaApi.Models.ImagesLibrary;
 using WebAppNasaApi.Services;
 
 namespace WebAppNasaApi.Pages
 {
-    public class ImageVideosModel : PageModel
+    public class ImageDetailsModel : PageModel
     {
+        public List<NasaImageModel> nasaimagemodel = new List<NasaImageModel>();
         private readonly NasaApiService _nasaApiService;
-        public NasaImagesResponse image_response;
-        public List<NasaImageModel> image_list;
-        public string input_search = "all";
 
-
-        public ImageVideosModel(NasaApiService nasaapiservice)
+        public ImageDetailsModel(NasaApiService nasaApiService)
         {
-            _nasaApiService = nasaapiservice;
+            _nasaApiService = nasaApiService;
         }
 
-        public void OnGet()
+        public IActionResult OnGetAsync(string nasa_id)
         {
-            //image_response = ImagesVideosTask("all").Result;
-            image_list = OrderData(ImagesVideosTask(input_search).Result);
-        }
+            //nasaimagemodel = GetTheImageTask(nasa_id).Result;
+            nasaimagemodel = OrderData(GetTheImageTask(nasa_id).Result);
+            //nasaimagemodel = JsonConvert.DeserializeObject<NasaImageModel>(json);
 
-        public void OnPost()
-        {
-            input_search = Request.Form["input-search-image"];
-            image_list = null;
-            image_list = OrderData(ImagesVideosTask(input_search).Result);
-            ViewData["is_post"] = true;
+            if (nasaimagemodel == null)
+            {
+                return NotFound();
+            }
+
+            return Page();
         }
 
         public List<NasaImageModel> OrderData(NasaImagesResponse response)
@@ -44,7 +45,7 @@ namespace WebAppNasaApi.Pages
             {
                 int index = 0;
                 foreach (var i in item.links)
-                { 
+                {
                     title = item.data.ElementAt(index).title;
                     description = item.data.ElementAt(index).description;
                     mediatype = item.data.ElementAt(index).media_type;
@@ -64,11 +65,9 @@ namespace WebAppNasaApi.Pages
             return listado_Images;
         }
 
-        public async Task<NasaImagesResponse> ImagesVideosTask(string query)
+        public async Task<NasaImagesResponse> GetTheImageTask(string nasa_id)
         {
-            var marsRoverPhotos = await _nasaApiService.GetNasaImagesAsync(query);
-
-            return marsRoverPhotos;
+            return await _nasaApiService.GetTheNasaImageAsync(nasa_id);
         }
     }
 }
