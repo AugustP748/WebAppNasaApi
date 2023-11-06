@@ -7,43 +7,37 @@
 <div class="text-center mb-3">
     <h1>Imagenes</h1>
     <form method="post">
-       <input type="text" class="form-control mx-auto" name="input-search-image" placeholder="Buscar..." 
-       style="width:500px; padding:0; display:inline;"/>
+       <input type="text" class="form-control mx-auto" name="input-search-image" placeholder="Buscar..."
+               style="width:500px; padding:0; display:inline;"/>
         <button type="submit" name="submitButton" class="btn btn-primary"
         value="searchbutton">Buscar</button>
     </form>
     @if (ViewData["is_post"] is true)
     {
-        <p>@Model.image_response.collection.items.Count() Resultado/s de busqueda sobre
+        <p>@Model.image_list.Count() Resultado/s de busqueda sobre
             "@Model.input_search"</p>
     }
 </div>
 
 <div class="imagen-grid">
 
-    @if (Model.image_response.collection.items.Any())
+    @if (Model.image_list.Any())
     {
-        foreach (var item in Model.image_response.collection.items)
+        foreach (var item in Model.image_list)
         {
-            int index = 0;
-            
-            @foreach(var link in item.links)
-            {
+
                 <div class="imagen-item">
-                    <a href="@link.href" target="_blank">
-                        <img src="@link.href" class="card-img-top" alt="...">
+                    <a href="@item.href" target="_blank">
+                        <img src="@item.href" class="card-img-top" alt="...">
                     </a>
-                    @*<button class="favorite-button" onclick="toggleFavorite">&#9733;</button>*@
+                        @*<button class="favorite-button" onclick="toggleFavorite">&#9733;</button>*@
                     <form method="post">
                         <button type="submit" name="submitButton" class="favorite-button" 
                         value="favoriteButton">&#9733;</button>
                     </form>
-                    <div class="imagen-titulo">@item.data.ElementAt(index).title</div>
+                    <div class="imagen-titulo">@item.title</div>
                     
                 </div>
-
-                index++;
-            }
         }
     }
 </div>

@@ -1,0 +1,73 @@
+﻿@page
+@model WebAppNasaApi.Pages.ListApodViewModel
+
+@{
+    ViewData["Title"] = "ListApodView";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>ListApodView</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Apod[0].explanation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apod[0].title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apod[0].url)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apod[0].hdurl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apod[0].copyright)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apod[0].date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apod[0].media_type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Apod) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.explanation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hdurl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.copyright)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.media_type)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
