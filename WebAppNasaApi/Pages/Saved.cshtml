@@ -1,5 +1,9 @@
 ﻿@page
 @model WebAppNasaApi.Pages.SavedModel
+@using Radzen
+@using Radzen.Blazor
+@using WebAppNasaApi.Pages.Components;
+
 @{
 }
 
@@ -8,7 +12,12 @@
 </section>
 
 <section class="justify-content-center">
+
+    @*<component type="typeof(MoreInfoMars)" render-mode="ServerPrerendered" />*@
     
+
+
+
     @if(Model.list_apod.Count() > 0)
     {
         <a class="saved-apod-collapse" data-bs-toggle="collapse" href="#collapseExample" role="button" 

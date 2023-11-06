@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Radzen;
 using WebAppNasaApi.Context;
 using WebAppNasaApi.Services;
 
@@ -6,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddRadzenComponents();
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

@@ -1,5 +1,6 @@
 ﻿@page
 @model WebAppNasaApi.Pages.MarsRoverModel
+@using WebAppNasaApi.Pages.Components;
 @using WebAppNasaApi.Pages.Shared
 
 
@@ -32,86 +33,7 @@
     </form>
 
     <div class="collapse" id="collapseExample">
-        <div class="my-3">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Abreviatura</th>
-                        <th scope="col">Camara</th>
-                        <th scope="col">Curiosity</th>
-                        <th scope="col">Opportunity</th>
-                        <th scope="col">Spirit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>FHAZ</th>
-                        <td>Front Hazard Avoidance Camera</td>
-                        <td class="text-center">&#10003;</td>
-                        <td class="text-center">&#10003;</td>
-                        <td class="text-center">&#10003;</td>
-                    </tr>
-                    <tr>
-                        <th>RHAZ</th>
-                        <td>Rear Hazard Avoidance Camera</td>
-                        <td class="text-center">&#10003;</td>
-                        <td class="text-center">&#10003;</td>
-                        <td class="text-center">&#10003;</td>
-                    </tr>
-                    <tr>
-                        <th>MAST</th>
-                        <td>Mast Camera</td>
-                        <td class="text-center">&#10003;</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>CHEMCAM</th>
-                        <td>Chemistry and Camera Complex</td>
-                        <td class="text-center">&#10003;</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>MAHLI</th>
-                        <td>Mars Hand Lens Imager</td>
-                        <td class="text-center">&#10003;</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>MARDI</th>
-                        <td>Mars Descent Imager</td>
-                        <td class="text-center">&#10003;</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th>NAVCAM</th>
-                        <td>Navigation Camera</td>
-                        <td class="text-center">&#10003;</td>
-                        <td class="text-center">&#10003;</td>
-                        <td class="text-center">&#10003;</td>
-                    </tr>
-                    <tr>
-                        <th>PANCAM</th>
-                        <td>Panoramic Camera</td>
-                        <td></td>
-                        <td class="text-center">&#10003;</td>
-                        <td class="text-center">&#10003;</td>
-                    </tr>
-                    <tr>
-                        <th>MINITES</th>
-                        <td>Miniature Thermal Emission Spectrometer (Mini-TES)</td>
-                        <td></td>
-                        <td class="text-center">&#10003;</td>
-                        <td class="text-center">&#10003;</td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-        
+        <component type="typeof(MoreInfoMars)" render-mode="ServerPrerendered" />
     </div>
 
 </div>
