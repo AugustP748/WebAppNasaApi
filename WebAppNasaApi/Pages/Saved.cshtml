@@ -14,11 +14,12 @@
 <section class="justify-content-center">
 
     @*<component type="typeof(MoreInfoMars)" render-mode="ServerPrerendered" />*@
-    
+    <component type="typeof(SavedImagesDB)" render-mode="ServerPrerendered"
+    param-listApodDB="@Model.list_apod" />
 
 
 
-    @if(Model.list_apod.Count() > 0)
+    @*@if(Model.list_apod.Count() > 0)
     {
         <a class="saved-apod-collapse" data-bs-toggle="collapse" href="#collapseExample" role="button" 
         aria-expanded="false" aria-controls="collapseExample">
@@ -51,6 +52,6 @@
         <div class="text-center">
             <h1>There aren't any Apod picture saved.</h1>
         </div>
-    }
+    }*@
 
 </section>
