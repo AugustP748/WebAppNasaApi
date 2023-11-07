@@ -15,14 +15,35 @@
         {
             <RadzenCard Variant="@variant" Class="rz-my-12 rz-mx-auto" Style="max-width: 900px">
                 <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Start" Gap="1rem" Class="rz-p-4">
-                    <RadzenLink Path="@item.hdurl" Target="_blank">
-                        <RadzenImage Path="@item.url" Style="width: 300px; height: 300px; border-radius: 10%;"/>
-                    </RadzenLink>
+                    @if (item.media_type == "video")
+                    {
+                        <RadzenHtml>
+                            <iframe width="300" height="300" src="@item.url" frameborder="0" allowfullscreen></iframe>
+                        </RadzenHtml>
+                    }
+                    else
+                    {
+                        <RadzenLink Path="@item.hdurl" Target="_blank">
+                            <RadzenImage Path="@item.url" Style="width: 300px; height: 300px; border-radius: 10%;"/>
+                        </RadzenLink>
+                    }
                     <RadzenStack Gap="0">
                         <RadzenText TextStyle="TextStyle.H3"><b>@item.title</b></RadzenText>
                         <RadzenText TextStyle="TextStyle.Body2"><b>@item.explanation</b></RadzenText>
-                        <RadzenText TextStyle="TextStyle.Overline">
-                            Fecha: @item.date.ToString("dd/MM/yyyy") | Autor: @item.copyright</RadzenText><br/>
+                        @if (item.copyright is not null)
+                        { 
+                            <RadzenText TextStyle="TextStyle.Overline">
+                                Fecha: @item.date.ToString("dd/MM/yyyy") | Autor: @item.copyright
+                            </RadzenText>
+                        }
+                        else
+                        {
+                            <RadzenText TextStyle="TextStyle.Overline">
+                                Fecha: @item.date.ToString("dd/MM/yyyy")
+                            </RadzenText>
+
+                        }
+                            <br />
                     </RadzenStack>
                 </RadzenStack>
             </RadzenCard>

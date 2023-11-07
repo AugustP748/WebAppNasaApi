@@ -22,8 +22,8 @@ namespace WebAppNasaApi.Pages
 
         public void OnGet()
         {
-            //DataApod = index().Result;
-            //_saved = verify(DataApod);
+            DataApod = index().Result;
+            _saved = verify(DataApod);
         }
 
         public void OnPost()

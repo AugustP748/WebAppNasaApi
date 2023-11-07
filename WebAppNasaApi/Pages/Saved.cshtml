@@ -13,45 +13,7 @@
 
 <section class="justify-content-center">
 
-    @*<component type="typeof(MoreInfoMars)" render-mode="ServerPrerendered" />*@
     <component type="typeof(SavedImagesDB)" render-mode="ServerPrerendered"
     param-listApodDB="@Model.list_apod" />
-
-
-
-    @*@if(Model.list_apod.Count() > 0)
-    {
-        <a class="saved-apod-collapse" data-bs-toggle="collapse" href="#collapseExample" role="button" 
-        aria-expanded="false" aria-controls="collapseExample">
-            <h2>Apod Images Saved: @Model.list_apod.Count() Image/s</h2>
-        </a>
-        <div class="collapse" id="collapseExample">
-
-            @foreach(var item in Model.list_apod)
-            {
-                <div class="card my-3" style="margin:0 auto;height:50%; width:50%">
-                    <a href="@item.hdurl">
-                        <img src="@item.url" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h1 class="card-title">@item.title</h1>
-                        <p class="card-text">@item.explanation</p>
-                        <p class="card-text" style="display:inline-block;">
-                            <small class="text-body-secondary">
-                                Fecha: @item.date.ToString("dd/MM/yyyy") | Autor: @item.copyright &copy;
-                            </small>
-                        </p>
-                        <a href="#" class="btn btn-danger">Delete</a>
-                    </div>
-                </div>
-            }
-        </div>
-    }
-    else
-    {
-        <div class="text-center">
-            <h1>There aren't any Apod picture saved.</h1>
-        </div>
-    }*@
 
 </section>
