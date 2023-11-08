@@ -1,7 +1,8 @@
 ﻿@using Radzen;
 @using WebAppNasaApi.Models.ImagesLibrary;
 @using Radzen.Blazor
-<h3>SavedModelImageDB</h3>
+@inject NotificationService NotificationService
+@inject NavigationManager NavigationManager;
 
 @code {
     [Parameter]
@@ -10,13 +11,26 @@
 }
 @if (listImageModel.Count() > 0)
 { 
+<h3>Imagenes guardadas: @listImageModel.Count()</h3>
+    <RadzenRow JustifyContent="JustifyContent.Center">
     @foreach(var item in listImageModel)
     {
-        <RadzenCard class="m-3">
-            <RadzenImage Path="@item.href" Style="width: 25%; height: auto;" />
-            <h3 class="h5">@item.title</h3>
+        <RadzenColumn Style="margin:0">
+
+   
+        <RadzenCard Variant="@variant" class="rz-my-12" Style="max-width: 350px">
+            <RadzenStack Orientation="Orientation.Vertical" JustifyContent="JustifyContent.Center" Gap="1rem" class="rz-p-4">
+                <RadzenImage Path="@item.href" Style="width: 200px; height: 200px; border-radius: 10%;margin: auto;" />
+                <RadzenStack Gap="0">
+                    <RadzenText TextStyle="TextStyle.Subtitle1" class="rz-display-flex rz-mt-2 rz-my-0">@item.title</RadzenText>
+                </RadzenStack>
+            </RadzenStack>
         </RadzenCard>
+                
+    </RadzenColumn>
     }
+    </RadzenRow>
+
 }
 else
 {

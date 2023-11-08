@@ -36,9 +36,23 @@
                     }
                 </form>
                 
-                    <p class="card-text" style="display:inline-block;">
-                        <small class="text-body-secondary">
-                        Fecha: @Model.DataApod.date.ToString("dd/MM/yyyy") | Autor: @Model.DataApod.copyright &copy;</small></p>
+                    
+                        @if (Model.DataApod.copyright is not null)
+                        {
+                            <p class="card-text" style="display:inline-block;">
+                                <small class="text-body-secondary">
+                                    Fecha: @Model.DataApod.date.ToString("dd/MM/yyyy") | Autor: @Model.DataApod.copyright &copy;
+                                </small>
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="card-text" style="display:inline-block;">
+                                <small class="text-body-secondary">
+                                    Fecha: @Model.DataApod.date.ToString("dd/MM/yyyy")
+                                </small>
+                            </p>
+                        }
             </div>
         </div>
     }
