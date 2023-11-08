@@ -25,16 +25,17 @@
                 <h1 class="card-title">@Model.DataApod.title</h1>
                 <p class="card-text">@Model.DataApod.explanation</p>
                 <form method="post" style="display:inline">
+                    
                     @if (Model._saved is true)
                     {
                         <button type="submit" class="btn btn-danger">Quitar de guardado</button>
                     }
                     else
                     {
-                        <button type="submit" class="btn btn-warning">Guardar Imagen del día</button>
+                        <button type="submit" class="btn btn-success">Guardar Imagen del día</button>
                     }
                 </form>
-                @*<button type="button" class="btn btn-warning" onclick="SaveApodImage">Guardar Imagen del día</button>*@
+                
                     <p class="card-text" style="display:inline-block;">
                         <small class="text-body-secondary">
                         Fecha: @Model.DataApod.date.ToString("dd/MM/yyyy") | Autor: @Model.DataApod.copyright &copy;</small></p>

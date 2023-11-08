@@ -22,7 +22,6 @@
     {
         foreach (var item in Model.image_list)
         {
-            @*var json = JsonConvert.SerializeObject(item);*@
             <div class="imagen-item">
                 <a asp-page="/ImageDetails" asp-route-nasa_id=@item.nasa_id>
                     <img src="@item.href" class="card-img-top" alt="...">
@@ -32,4 +31,3 @@
         }
     }
 </div>
-

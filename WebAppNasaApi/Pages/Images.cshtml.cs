@@ -9,7 +9,7 @@ namespace WebAppNasaApi.Pages
         private readonly NasaApiService _nasaApiService;
         public NasaImagesResponse image_response;
         public List<NasaImageModel> image_list;
-        public string input_search = "all";
+        public string input_search = "moon";
 
 
         public ImageVideosModel(NasaApiService nasaapiservice)
@@ -19,7 +19,6 @@ namespace WebAppNasaApi.Pages
 
         public void OnGet()
         {
-            //image_response = ImagesVideosTask("all").Result;
             image_list = OrderData(ImagesVideosTask(input_search).Result);
         }
 

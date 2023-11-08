@@ -1,0 +1,28 @@
+﻿@using Radzen;
+@using WebAppNasaApi.Models.ImagesLibrary;
+@using Radzen.Blazor
+<h3>SavedModelImageDB</h3>
+
+@code {
+    [Parameter]
+    public List<NasaImageModel> listImageModel { set; get; }
+    Variant variant = Variant.Filled;
+}
+@if (listImageModel.Count() > 0)
+{ 
+    @foreach(var item in listImageModel)
+    {
+        <RadzenCard class="m-3">
+            <RadzenImage Path="@item.href" Style="width: 25%; height: auto;" />
+            <h3 class="h5">@item.title</h3>
+        </RadzenCard>
+    }
+}
+else
+{
+    <div class="text-center">
+        <RadzenText TextStyle="TextStyle.H3">There arent any to show here :/</RadzenText>
+    </div>
+}
+
+

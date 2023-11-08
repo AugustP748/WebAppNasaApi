@@ -22,16 +22,16 @@ namespace WebAppNasaApi.Services
         // APOD API
         public async Task<Apod> GetNasaDataAsync()
         {
-            // Construye la URL de la API de la NASA según tus necesidades.
-            string apiUrl = "https://api.nasa.gov/planetary/apod"; // Sustituye esto con la URL correcta.
+            
+            string apiUrl = "https://api.nasa.gov/planetary/apod"; 
 
-            // Agrega la clave de API a la URL.
+            // Clave de API a la URL.
             var uriBuilder = new UriBuilder(apiUrl);
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
             query["api_key"] = _apiKey;
             uriBuilder.Query = query.ToString();
 
-            // Realiza la solicitud a la API.
+            // Solicitud a la API.
             var response = await _httpClient.GetFromJsonAsync<Apod>(uriBuilder.ToString());
 
             return response;
