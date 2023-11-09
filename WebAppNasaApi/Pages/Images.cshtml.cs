@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using WebAppNasaApi.Context;
 using WebAppNasaApi.Models.ImagesLibrary;
 using WebAppNasaApi.Services;
 
@@ -7,14 +9,16 @@ namespace WebAppNasaApi.Pages
     public class ImageVideosModel : PageModel
     {
         private readonly NasaApiService _nasaApiService;
+        private readonly ApplicationDbContext _context;
         public NasaImagesResponse image_response;
         public List<NasaImageModel> image_list;
         public string input_search = "moon";
 
 
-        public ImageVideosModel(NasaApiService nasaapiservice)
+        public ImageVideosModel(NasaApiService nasaapiservice, ApplicationDbContext context)
         {
             _nasaApiService = nasaapiservice;
+            _context = context;
         }
 
         public void OnGet()
@@ -62,6 +66,7 @@ namespace WebAppNasaApi.Pages
             }
             return listado_Images;
         }
+
 
         public async Task<NasaImagesResponse> ImagesVideosTask(string query)
         {

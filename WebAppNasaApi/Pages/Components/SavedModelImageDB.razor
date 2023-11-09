@@ -1,13 +1,16 @@
-﻿@using Radzen;
+﻿@page "/Saved"
+@using Radzen;
 @using WebAppNasaApi.Models.ImagesLibrary;
 @using Radzen.Blazor
 @inject NotificationService NotificationService
 @inject NavigationManager NavigationManager;
 
+
 @code {
     [Parameter]
     public List<NasaImageModel> listImageModel { set; get; }
     Variant variant = Variant.Filled;
+
 }
 @if (listImageModel.Count() > 0)
 { 
@@ -24,6 +27,8 @@
                 <RadzenStack Gap="0">
                     <RadzenText TextStyle="TextStyle.Subtitle1" class="rz-display-flex rz-mt-2 rz-my-0">@item.title</RadzenText>
                 </RadzenStack>
+                        
+
             </RadzenStack>
         </RadzenCard>
                 

@@ -17,7 +17,30 @@
     <component type="typeof(SavedImagesDB)" render-mode="ServerPrerendered"
                 param-listApodDB="@Model.list_apod" />
 
-    <component type="typeof(SavedModelImageDB)" render-mode="ServerPrerendered"
-               param-listImageModel="@Model.list_image_model" />
+    @*<component type="typeof(SavedModelImageDB)" render-mode="ServerPrerendered"
+               param-listImageModel="@Model.list_image_model" />*@
+
+    <h3>Imagenes guardadas: @Model.list_image_model.Count()</h3>
+
+    @foreach(var item in Model.list_image_model)
+    {
+        <div class="card mb-3" style="max-width: 800px; margin:auto;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="@item.href" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.title</h5>
+                        <p class="card-text">@item.description</p>
+                        <form method="post">
+                            <input type="hidden" name="id_image" value="@item.nasa_id" />
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 
 </section>
