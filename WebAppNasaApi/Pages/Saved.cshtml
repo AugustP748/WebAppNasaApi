@@ -17,9 +17,6 @@
     <component type="typeof(SavedImagesDB)" render-mode="ServerPrerendered"
                 param-listApodDB="@Model.list_apod" />
 
-    @*<component type="typeof(SavedModelImageDB)" render-mode="ServerPrerendered"
-               param-listImageModel="@Model.list_image_model" />*@
-
     <h3>Imagenes guardadas: @Model.list_image_model.Count()</h3>
 
     @foreach(var item in Model.list_image_model)
